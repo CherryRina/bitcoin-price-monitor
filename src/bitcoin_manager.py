@@ -1,4 +1,4 @@
-from api_handler import ApiHandler
+from src.api_handler import ApiHandler
 from datetime import datetime as dt
 import json
 

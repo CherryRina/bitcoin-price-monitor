@@ -1,4 +1,5 @@
 import logging
+import os
 
 class Logger():
     def __init__(self):
@@ -8,11 +9,12 @@ class Logger():
     def setup_logger(self):
         """ Sets the logger for the script """
         # logger
+        logger_path = os.path.join('data', 'bitcoin_value_logs.log')
         logger = logging.getLogger('bitcoin_value_logger')
         logger.setLevel(logging.INFO)
         if not logger.hasHandlers():
             # handler
-            file_handler = logging.FileHandler('bitcoin_value_logs.log')
+            file_handler = logging.FileHandler(logger_path)
             file_handler.setLevel(logging.INFO)
             # formatter
             formater = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
