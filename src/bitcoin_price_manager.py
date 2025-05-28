@@ -1,7 +1,7 @@
 from src.api_handler import ApiHandler
 from datetime import datetime as dt
 
-class BitcoinManager(ApiHandler):
+class BitcoinPriceManager(ApiHandler):
     def __init__(self, endpoint, logger, json_loader):
         super().__init__(endpoint, logger)
         self.json_loader = json_loader
@@ -18,7 +18,7 @@ class BitcoinManager(ApiHandler):
             timestamp = dt.now().strftime('%H:%M:%S')
             return timestamp, bitcoin_price
         except Exception as e:
-            self.logger.error("Failed to fetch Bitcoin price: {e}. Check the API response JSON file")
+            self.logger.fatal("Failed to fetch Bitcoin price: {e}. Check the API response")
             exit(1)
 
     
@@ -29,5 +29,5 @@ class BitcoinManager(ApiHandler):
         """
         new_json = self.json_loader.json_data
         new_json[timestamp] = bitcoin_price
-        self.json_loader.safe_write_to_json(file_path=file_path, new_json=new_json)
+        self.json_loader.safe_write_to_json(file_path=file_path, data=new_json)
         self.logger.info("Bitcoin data was added to json")

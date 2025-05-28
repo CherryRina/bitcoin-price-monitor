@@ -2,7 +2,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-class EmailSender():
+SAMPLE_COUNT = -60
+
+class EmailManager():
     def __init__(self, src_email, src_email_password, dst_email, json_loader, logger):
         self.src_email = src_email
         self.src_email_password = src_email_password
@@ -19,7 +21,7 @@ class EmailSender():
         json_data = self.json_loader.json_data
         if not json_data:
             return "Could not determine max Bitcoin price."
-        last_60_items = dict(list(json_data.items())[-30:])
+        last_60_items = dict(list(json_data.items())[SAMPLE_COUNT:])
         max_row = max(last_60_items, key=lambda x: last_60_items[x])
         price = f"{last_60_items[max_row]:,}"
         result = f"Maximum Bitcoin price in the past hour was ${price} at {max_row}."
