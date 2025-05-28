@@ -1,4 +1,3 @@
-from src.logger import Logger
 import json
 
 class JsonLoader():
@@ -6,16 +5,8 @@ class JsonLoader():
         self.logger = logger
         self.json_data = self.safe_read_json(file_path)
 
-
-    def list_json_data():
-        pass
-
-
-    def save_to_json_file():
-        pass
-
     
-    def json_empty(self, json_data):
+    def json_empty(self, json_data) -> bool:
         """
         Recieves JSON file
         Returns True if empty, flase if not
@@ -26,7 +17,7 @@ class JsonLoader():
         return False
 
 
-    def safe_read_json(self, file_path:str):
+    def safe_read_json(self, file_path:str) -> dict:
         """
         Recieves file path and loads its contents, has many error handling logs
         Returns the contents of the json as a dictionary (or empty one in failure)

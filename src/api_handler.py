@@ -6,7 +6,12 @@ class ApiHandler():
         self.endpoint = endpoint
         self.logger = logger
 
-    def check_valid_status_code(self, status_code):
+
+    def check_valid_status_code(self, status_code:str) -> bool:
+        """
+        Recieves a string status code and check if its successful
+        Returns True is the code is successful and false it isnt
+        """
         if status_code != 200:
             self.logger.error(f"API returned status code: {status_code}")
             return False

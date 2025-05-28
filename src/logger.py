@@ -21,5 +21,6 @@ class Logger():
             file_handler.setFormatter(formater)
             # add handler to logger 
             logger.addHandler(file_handler)
-            logger.info("New logger file was created")
+            # logger.info("New logger file was created")
+            # TODO: wwite new logs for logger 
         return logger
