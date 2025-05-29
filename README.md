@@ -7,11 +7,10 @@ This application fetches the current Bitcoin Price Index (BPI) from the CoinDesk
 
 ## Classes Architecture
 - **`BitcoinPriceManager`**: Handles API requests to Bitcoin endpoint and manages data saving to JSON
-- **`EmailManager`**: Finds maximum price, creates email messages, and sends notifications
-- **`BitcoinGraphGenerator`** (inherits from `ApiHandler`): Creates graph images and saves them
+- **`EmailManager`**: Parses price according to mail, creates email messages, and sends notifications
+- **`BitcoinGraphGenerator`**: Creates graph images and saves them
 - **`JsonHandler`**: Provides safe JSON file operations with comprehensive error handling
 - **`logger`**: Sets up application logging
-- **`ApiHandler`**: Base class for GET requests with error handling
 
 ## Installation
 
@@ -29,13 +28,6 @@ This application fetches the current Bitcoin Price Index (BPI) from the CoinDesk
    SRC_EMAIL_PASSWORD=your-app-password
    ```
 
-### Dependencies
-```
-requests>=2.28.0
-matplotlib>=3.5.0
-python-dateutil>=2.8.0
-```
-
 ## Usage
 
 ### Running the Application
@@ -50,6 +42,6 @@ Execute the main script from the project root:
    - An email notification is sent with the price summary
 
 ### Output Files
-- **JSON Data**: `data/*.json` - Contains timestamped price data
-- **Log Files**: `data/*.log` - Application logs for monitoring and debugging
+- **JSON Data**: `data/bitcoin_prices.json` - Contains timestamped price data
+- **Log Files**: `data/bitcoin_value_logs.log` - Application logs for monitoring and debugging
 - **Graph Images**: `graph_images/*.png` - Generated price charts

@@ -1,9 +1,9 @@
 from datetime import datetime as dt
 from  matplotlib import pyplot as plt
 from matplotlib.ticker import FuncFormatter
+from constance import SAMPLES_COUNT
 import os
 
-SAMPLE_COUNT = -60
 
 class BitcoinGraphGenerator():
     def __init__(self, json_loader, logger):
@@ -14,7 +14,7 @@ class BitcoinGraphGenerator():
 
     def _list_json_data(self) -> tuple[list[str], list[float]]:
         """
-        Method parses dictionary components 
+        Helper method parses dictionary components 
         Returns two lists - one for the json keys, the other for the values
         """
         try:
@@ -23,8 +23,8 @@ class BitcoinGraphGenerator():
                 self.logger.warning("No JSON data available")
                 return [], []
             
-            times = list(json_data.keys())[SAMPLE_COUNT:]
-            prices = list(json_data.values())[SAMPLE_COUNT:]
+            times = list(json_data.keys())[-SAMPLES_COUNT:]
+            prices = list(json_data.values())[-SAMPLES_COUNT:]
             
             if len(times) == 0:
                 self.logger.warning("No data points after filtering")
@@ -48,7 +48,7 @@ class BitcoinGraphGenerator():
 
     def _create_image_name(self) -> str:
         """
-        Method creates detailed image name
+        Helper method creates detailed image name
         Returns a full name that contains - current date, first and last hour of the graph
         """
         first_time = self.time_format(self.times[0], "-")

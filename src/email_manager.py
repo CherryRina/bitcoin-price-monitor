@@ -1,8 +1,9 @@
 import smtplib
+from constance import SAMPLES_COUNT, SMTP_DOMAIN
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-SAMPLE_COUNT = -60
+
 
 class EmailManager():
     def __init__(self, src_email, src_email_password, dst_email, json_loader, logger):
@@ -13,7 +14,7 @@ class EmailManager():
         self.logger = logger
 
 
-    def find_max_price(self) -> str:
+    def parse_json_data_to_maximum_price(self) -> str:
         """ 
         Method looks for highst price value inside a json dictionary
         Returns sentance with the value
@@ -21,7 +22,7 @@ class EmailManager():
         json_data = self.json_loader.json_data
         if not json_data:
             return "Could not determine max Bitcoin price."
-        last_60_items = dict(list(json_data.items())[SAMPLE_COUNT:])
+        last_60_items = dict(list(json_data.items())[-SAMPLES_COUNT:])
         max_row = max(last_60_items, key=lambda x: last_60_items[x])
         price = f"{last_60_items[max_row]:,}"
         result = f"Maximum Bitcoin price in the past hour was ${price} at {max_row}."
@@ -47,7 +48,7 @@ class EmailManager():
         Logs final status
         """
         try:
-            with smtplib.SMTP("smtp.gmail.com") as connection:                     
+            with smtplib.SMTP(SMTP_DOMAIN) as connection:                     
                 connection.starttls()    
                 connection.login(user=self.src_email, password=self.src_email_password)    
                 connection.sendmail(                                               
