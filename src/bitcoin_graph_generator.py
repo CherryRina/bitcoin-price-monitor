@@ -1,7 +1,7 @@
 from datetime import datetime as dt
 from  matplotlib import pyplot as plt
 from matplotlib.ticker import FuncFormatter
-from constance import SAMPLES_COUNT
+from src.constants import SAMPLES_COUNT
 import os
 
 

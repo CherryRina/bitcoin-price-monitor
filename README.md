@@ -23,7 +23,7 @@ This application fetches the current Bitcoin Price Index (BPI) from the CoinDesk
    Create a `.env` file in the root directory with the following variables:
    ```env
    DST_EMAIL=recipient@example.com
-   BITCOIN_ENDPOINT=https://api.coindesk.com/v1/bpi/currentprice.json
+   BITCOIN_ENDPOINT='https://api.coinbase.com/v2/prices/BTC-USD/spot'
    SRC_EMAIL=your-email@gmail.com
    SRC_EMAIL_PASSWORD=your-app-password
    ```
@@ -31,7 +31,12 @@ This application fetches the current Bitcoin Price Index (BPI) from the CoinDesk
 ## Usage
 
 ### Running the Application
-Execute the main script from the project root:
+Execute the main script from the project root
+
+### Requirements
+requests==2.32.3
+matplotlib==3.10.3
+dotenv==0.9.9
 
 ### Application Workflow
 1. **Data Collection**: The script fetches Bitcoin prices every minute

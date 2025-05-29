@@ -1,5 +1,5 @@
 import smtplib
-from constance import SAMPLES_COUNT, SMTP_DOMAIN
+from src.constants import SAMPLES_COUNT, SMTP_DOMAIN
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
